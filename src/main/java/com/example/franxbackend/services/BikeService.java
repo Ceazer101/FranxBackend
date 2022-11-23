@@ -6,6 +6,9 @@ import com.example.franxbackend.entities.Bike;
 import com.example.franxbackend.repositories.BikeRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class BikeService {
 
@@ -20,4 +23,15 @@ public class BikeService {
         newBike = bikeRepository.save(newBike);
         return new BikeResponse(newBike);
     }
+
+
+    public List<BikeResponse> fetchBikes(){
+        List<Bike> bikes = bikeRepository.findAll();
+        List<BikeResponse> response = bikes.stream().map(bike ->
+                new BikeResponse(bike)).collect(Collectors.toList());
+
+        return response;
+    }
+
+
 }

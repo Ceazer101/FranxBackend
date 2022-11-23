@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -24,6 +26,12 @@ class BikeServiceTest {
     public static void initTestData(@Autowired BikeRepository bike_repository){
         bikeRepository = bike_repository;
         bikeRepository.deleteAll();
+        Bike bike = new Bike("4053009", "bike", "something", 500, "10-10-10", Status.SOLD);
+        Bike bike1 = new Bike("789345", "bmx", "street", 1000, "11-11-11", Status.RESTORED);
+
+        bikeRepository.save(bike1);
+        bikeRepository.save(bike);
+
     }
 
     @BeforeEach
@@ -38,4 +46,12 @@ class BikeServiceTest {
         BikeResponse response = bikeService.addBike(bikeRequest);
         assertEquals("123456", response.getFrameNumber());
     }
+
+    @Test
+    void fetchBikes(){
+        List<BikeResponse> bikeList = bikeService.fetchBikes();
+
+        assertEquals(2, bikeList.size());
+    }
+
 }
