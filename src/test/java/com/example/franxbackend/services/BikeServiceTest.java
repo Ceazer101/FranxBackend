@@ -48,8 +48,8 @@ class BikeServiceTest {
     }
 
     @Test
-    void fetchBikes(){
-        List<BikeResponse> bikeList = bikeService.fetchBikes();
+    void getAllBikes(){
+        List<BikeResponse> bikeList = bikeService.getAllBikes();
 
         assertEquals(2, bikeList.size());
     }

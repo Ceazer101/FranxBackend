@@ -24,7 +24,7 @@ public class BikeController {
 
     @GetMapping
     public List<BikeResponse> getAllBikes(){
-        List<BikeResponse> response = bikeService.fetchBikes();
+        List<BikeResponse> response = bikeService.getAllBikes();
         return response;
     }
 

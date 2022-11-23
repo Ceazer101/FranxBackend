@@ -25,7 +25,7 @@ public class BikeService {
     }
 
 
-    public List<BikeResponse> fetchBikes(){
+    public List<BikeResponse> getAllBikes(){
         List<Bike> bikes = bikeRepository.findAll();
         List<BikeResponse> response = bikes.stream().map(bike ->
                 new BikeResponse(bike)).collect(Collectors.toList());
