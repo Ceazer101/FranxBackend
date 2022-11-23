@@ -7,5 +7,4 @@ public enum Status {
     SOLD,
     DISASSEMBLE,
     SCRAPPED
-
 }
