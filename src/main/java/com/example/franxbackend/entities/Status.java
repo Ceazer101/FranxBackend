@@ -2,9 +2,9 @@ package com.example.franxbackend.entities;
 
 public enum Status {
 
+    UNDER_RESTORATION,
+    RESTORED,
     SOLD,
-    UNDER_REPAIR,
-    REPAIRED,
     DISASSEMBLE,
     SCRAPPED
 
