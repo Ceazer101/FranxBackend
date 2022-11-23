@@ -4,7 +4,9 @@ import com.example.franxbackend.dtos.BikeRequest;
 import com.example.franxbackend.dtos.BikeResponse;
 import com.example.franxbackend.entities.Bike;
 import com.example.franxbackend.repositories.BikeRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BikeService {
 
     BikeRepository bikeRepository;
