@@ -22,7 +22,7 @@ public class Setup implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        Bike bike = new Bike("123456", "bike", "something", 500, "12-12-12", Status.SOLD);
+        Bike bike = new Bike("123456", "bike", "something", 500, "12-12-12", Status.DISASSEMBLE);
         Bike bike1 = new Bike("789345", "bmx", "street", 1000, "11-11-11", Status.RESTORED);
 
         bikeRepository.save(bike1);
