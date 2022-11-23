@@ -1,4 +1,35 @@
 package com.example.franxbackend.dtos;
 
+import com.example.franxbackend.entities.Bike;
+import com.example.franxbackend.entities.Status;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BikeResponse {
+
+    private String frameNumber;
+    private String model;
+    private String brand;
+    private double price;
+
+    private Status status;
+
+    private String sellDate;
+
+    public BikeResponse(Bike bike) {
+        this.frameNumber = bike.getFrameNumber();
+        this.model = bike.getModel();
+        this.brand = bike.getBrand();
+        this.price = bike.getPrice();
+        this.status = bike.getStatus();
+        this.sellDate = bike.getSellDate();
+    }
 }
