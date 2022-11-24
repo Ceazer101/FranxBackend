@@ -19,6 +19,7 @@ public class BikeController {
 
     @PostMapping
     public BikeResponse addBike(@RequestBody BikeRequest body){
+        System.out.println("hej");
         return bikeService.addBike(body);
     }
 
