@@ -73,4 +73,13 @@ class BikeServiceTest {
     }
 
 
+    @Test
+    void editBike() {
+        BikeRequest bikeRequest = new BikeRequest(new Bike("4053009", "bike", "something", 500, "11-11-11", Status.DISASSEMBLE));
+        bikeService.editBike(bikeRequest, "4053009");
+
+        BikeResponse bikeResponse = bikeService.getSingleBike("4053009");
+        assertEquals("11-11-11", bikeResponse.getSellDate());
+        assertEquals(Status.DISASSEMBLE, bikeResponse.getStatus());
+    }
 }

@@ -42,5 +42,17 @@ public class BikeService {
          return bikeResponse;
     }
 
+    public void editBike(BikeRequest body, String frameNumber){
+        Bike bike = bikeRepository.findById(frameNumber).orElseThrow(()->
+                new ResponseStatusException(HttpStatus.NOT_FOUND,"Bike with this frame number does not exist"));
+
+        bike.setBrand(body.getBrand());
+        bike.setModel(body.getModel());
+        bike.setPrice(body.getPrice());
+        bike.setSellDate(body.getSellDate());
+        bike.setStatus(body.getStatus());
+        bikeRepository.save(bike);
+    }
+
 
 }
