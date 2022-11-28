@@ -4,7 +4,9 @@ import com.example.franxbackend.dtos.BikeRequest;
 import com.example.franxbackend.dtos.BikeResponse;
 import com.example.franxbackend.entities.Bike;
 import com.example.franxbackend.repositories.BikeRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +33,13 @@ public class BikeService {
                 new BikeResponse(bike)).collect(Collectors.toList());
 
         return response;
+    }
+
+    public BikeResponse getSingleBike(String frameNumber){
+         Bike bike = bikeRepository.findById(frameNumber).orElseThrow(()->
+                 new ResponseStatusException(HttpStatus.NOT_FOUND,"Bike with this frame number does not exist"));
+         BikeResponse bikeResponse = new BikeResponse(bike);
+         return bikeResponse;
     }
 
 

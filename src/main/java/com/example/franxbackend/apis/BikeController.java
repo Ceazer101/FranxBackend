@@ -2,6 +2,7 @@ package com.example.franxbackend.apis;
 
 import com.example.franxbackend.dtos.BikeRequest;
 import com.example.franxbackend.dtos.BikeResponse;
+import com.example.franxbackend.entities.Bike;
 import com.example.franxbackend.services.BikeService;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,12 @@ public class BikeController {
     public List<BikeResponse> getAllBikes(){
         List<BikeResponse> response = bikeService.getAllBikes();
         return response;
+    }
+
+    @GetMapping("/{frameNumber}")
+    public BikeResponse getSignleBike(@PathVariable String frameNumber){
+        BikeResponse bikeResponse = bikeService.getSingleBike(frameNumber);
+        return bikeResponse;
     }
 
 

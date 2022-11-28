@@ -5,11 +5,14 @@ import com.example.franxbackend.dtos.BikeResponse;
 import com.example.franxbackend.entities.Bike;
 import com.example.franxbackend.entities.Status;
 import com.example.franxbackend.repositories.BikeRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -53,5 +56,21 @@ class BikeServiceTest {
 
         assertEquals(2, bikeList.size());
     }
+
+    @Test
+    void getSingleBike() {
+        BikeResponse bikeResponse = bikeService.getSingleBike("4053009");
+
+        assertEquals("4053009", bikeResponse.getFrameNumber());
+        assertEquals(500, bikeResponse.getPrice());
+        assertEquals(Status.SOLD, bikeResponse.getStatus());
+    }
+    @Test
+    void getSingleBikeByNotExistingFrameNumber(){
+        ResponseStatusException bikeResponse1 = Assertions
+                .assertThrows(ResponseStatusException.class,()-> bikeService.getSingleBike("I-do-not-Exist"));
+        assertEquals(HttpStatus.NOT_FOUND, bikeResponse1.getStatus());
+    }
+
 
 }
