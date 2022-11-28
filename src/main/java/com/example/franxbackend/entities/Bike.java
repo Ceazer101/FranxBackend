@@ -1,9 +1,12 @@
 package com.example.franxbackend.entities;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -19,6 +22,12 @@ public class Bike {
     private String brand;
     private double price;
 
+    //@UpdateTimestamp
     private String sellDate;
     private Status status;
+    //@CreationTimestamp
+    //private LocalDateTime created;
+
+
+
 }
