@@ -22,11 +22,13 @@ public class Bike {
     private String brand;
     private double price;
 
-    //@UpdateTimestamp
+
     private String sellDate;
     private Status status;
     //@CreationTimestamp
     //private LocalDateTime created;
+    //@UpdateTimestamp
+    //private LocalDateTime updated;
 
 
 
