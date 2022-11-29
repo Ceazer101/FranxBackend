@@ -81,7 +81,7 @@ class BikeServiceTest {
         bikeService.editBike(bikeRequest, "4053009");
 
         BikeResponse bikeResponse = bikeService.getSingleBike("4053009");
-        assertEquals("11-11-11", bikeResponse.getSellDate());
+        assertEquals(LocalDate.of(2011, Month.NOVEMBER, 11), bikeResponse.getSellDate());
         assertEquals(Status.DISASSEMBLE, bikeResponse.getStatus());
     }
 }
