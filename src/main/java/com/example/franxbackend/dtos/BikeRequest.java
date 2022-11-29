@@ -4,6 +4,8 @@ import com.example.franxbackend.entities.Bike;
 import com.example.franxbackend.entities.Status;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,7 +15,7 @@ public class BikeRequest {
     private String model;
     private String brand;
     private double price;
-    private String sellDate;
+    private LocalDate sellDate;
     private Status status;
 
 

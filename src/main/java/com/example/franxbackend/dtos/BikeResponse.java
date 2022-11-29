@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,7 +24,7 @@ public class BikeResponse {
 
     private Status status;
 
-    private String sellDate;
+    private LocalDate sellDate;
 
     public BikeResponse(Bike bike) {
         this.frameNumber = bike.getFrameNumber();

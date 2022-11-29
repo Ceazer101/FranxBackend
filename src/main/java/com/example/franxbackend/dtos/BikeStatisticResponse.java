@@ -16,8 +16,11 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BikeStatisticResponse {
 
-    List<BikeResponse> bikes;
-    int NumberOfBikes;
-    double totalPrice;
+    List<BikeResponse> bikesSold;
+    int NumberOfSoldBikesYearly;
+    double totalPriceYearly;
+    List<Integer> numberOfSoldBikesQuarterly;
+    List<Double> totalPriceQuarterly;
+
 
 }

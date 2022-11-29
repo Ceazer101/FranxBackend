@@ -6,7 +6,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -22,13 +25,14 @@ public class Bike {
     private String brand;
     private double price;
 
-
-    private String sellDate;
+    private LocalDate sellDate;
     private Status status;
     //@CreationTimestamp
     //private LocalDateTime created;
     //@UpdateTimestamp
     //private LocalDateTime updated;
+
+
 
 
 

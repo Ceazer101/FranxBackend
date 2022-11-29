@@ -14,6 +14,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -29,8 +31,8 @@ class BikeServiceTest {
     public static void initTestData(@Autowired BikeRepository bike_repository){
         bikeRepository = bike_repository;
         bikeRepository.deleteAll();
-        Bike bike = new Bike("4053009", "bike", "something", 500, "10-10-10", Status.SOLD);
-        Bike bike1 = new Bike("789345", "bmx", "street", 1000, "11-11-11", Status.RESTORED);
+        Bike bike = new Bike("4053009", "bike", "something", 500, LocalDate.of(2010, Month.OCTOBER, 10), Status.SOLD);
+        Bike bike1 = new Bike("789345", "bmx", "street", 1000, LocalDate.of(2011, Month.NOVEMBER, 11), Status.RESTORED);
 
         bikeRepository.save(bike1);
         bikeRepository.save(bike);
@@ -44,7 +46,7 @@ class BikeServiceTest {
 
     @Test
     void addBike() {
-        Bike bike = new Bike("123456", "bike", "something", 500, "12-12-12", Status.SOLD);
+        Bike bike = new Bike("123456", "bike", "something", 500, LocalDate.of(2012, Month.DECEMBER, 12), Status.SOLD);
         BikeRequest bikeRequest = new BikeRequest(bike);
         BikeResponse response = bikeService.addBike(bikeRequest);
         assertEquals("123456", response.getFrameNumber());
@@ -75,7 +77,7 @@ class BikeServiceTest {
 
     @Test
     void editBike() {
-        BikeRequest bikeRequest = new BikeRequest(new Bike("4053009", "bike", "something", 500, "11-11-11", Status.DISASSEMBLE));
+        BikeRequest bikeRequest = new BikeRequest(new Bike("4053009", "bike", "something", 500, LocalDate.of(2011, Month.NOVEMBER, 11), Status.DISASSEMBLE));
         bikeService.editBike(bikeRequest, "4053009");
 
         BikeResponse bikeResponse = bikeService.getSingleBike("4053009");
