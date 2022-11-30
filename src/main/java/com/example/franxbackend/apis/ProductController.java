@@ -1,12 +1,10 @@
 package com.example.franxbackend.apis;
 
 import com.example.franxbackend.dtos.BikeResponse;
+import com.example.franxbackend.dtos.ProductRequest;
 import com.example.franxbackend.dtos.ProductResponse;
 import com.example.franxbackend.services.ProductService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +23,11 @@ public class ProductController {
     public List<ProductResponse> getAllBikes(){
         List<ProductResponse> response = service.getAllProducts();
         return response;
+    }
+
+    @PostMapping
+    public ProductResponse addProduct(@RequestBody ProductRequest body){
+        return service.addProduct(body);
     }
 
 

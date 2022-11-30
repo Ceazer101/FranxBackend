@@ -1,5 +1,6 @@
 package com.example.franxbackend.services;
 
+import com.example.franxbackend.dtos.BikeRequest;
 import com.example.franxbackend.dtos.BikeResponse;
 import com.example.franxbackend.dtos.ProductRequest;
 import com.example.franxbackend.dtos.ProductResponse;
@@ -27,4 +28,11 @@ public class ProductService {
 
         return response;
     }
+
+    public ProductResponse addProduct(ProductRequest productRequest){
+        Product newProduct = ProductRequest.getProductEntity(productRequest);
+        newProduct = repository.save(newProduct);
+        return new ProductResponse(newProduct);
+    }
+
 }
