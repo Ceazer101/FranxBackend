@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface BikeStatisticRepository extends JpaRepository<Bike, String> {
 
-    //List<Bike> findBikeByStatus(Status status);
     List<Bike> findBikesByStatus(Status status);
 
 }

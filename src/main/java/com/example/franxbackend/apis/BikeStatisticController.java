@@ -21,8 +21,8 @@ public class BikeStatisticController {
         this.bikeStatisticService = bikeStatisticService;
     }
 
-    @GetMapping()
-    public BikeStatisticResponse getSoldBikes(@RequestParam int year){
+    @GetMapping("/{year}")
+    public BikeStatisticResponse getSoldBikes(@PathVariable int year){
         List<BikeResponse> soldBikesYearly = bikeStatisticService.getSoldBikesYearly(year);
         int numberOfBikesYearly = bikeStatisticService.getNumberOfSoldBikesYearly(year);
         double totalPriceYearly = bikeStatisticService.totalPriceYearly(year);
