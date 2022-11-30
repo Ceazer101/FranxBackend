@@ -42,6 +42,7 @@ class BikeStatisticServiceTest {
         bikeStatisticService = new BikeStatisticService(bikeStatisticRepository);
     }
 
+    //Denne test burde ikke fejle, da indholdet af begge lister er ends, men den kan ikke bestå.
    /* @Test
     void getSoldBikesYearly() {
         List<Bike> bikes = bikeStatisticRepository.findBikesByStatus(Status.SOLD);

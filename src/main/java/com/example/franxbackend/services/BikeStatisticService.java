@@ -49,7 +49,49 @@ public class BikeStatisticService {
     }
 
 
+    //Vil gerne have en liste med 4 integers, der hver især er antal cykler solgt i det givne kvartal
+    public List<Integer> getNumberOfSoldBikesQuarterly(int year, List<BikeResponse> bikes){
 
+        List<LocalDate> quarter1 = new ArrayList<>(LocalDate.of(1, Month.JANUARY, year)
+                .datesUntil(LocalDate.of(28, Month.FEBRUARY, year)).toList());
+        List<LocalDate> march = LocalDate.of(1, Month.MARCH, year)
+                .datesUntil(LocalDate.of(31, Month.MARCH, year)).toList();
+        quarter1.addAll(march);
+
+        List<LocalDate> quarter2 = LocalDate.of(1, Month.APRIL, year)
+                .datesUntil(LocalDate.of(30, Month.JUNE, year)).toList();
+        List<LocalDate> quarter3 = LocalDate.of(1, Month.JULY, year)
+                .datesUntil(LocalDate.of(30, Month.SEPTEMBER, year)).toList();
+        List<LocalDate> quarter4 = LocalDate.of(1, Month.OCTOBER, year)
+                .datesUntil(LocalDate.of(31, Month.DECEMBER, year)).toList();
+
+        ArrayList<Integer> quarterlyNumbers = new ArrayList<>();
+        int q1 = 0, q2 = 0, q3 = 0, q4 = 0;
+
+        for (BikeResponse b : bikes){
+           if(quarter1.contains(b.getSellDate())){
+                q1++;
+            }
+            if(quarter2.contains(b.getSellDate())){
+                q2++;
+            }
+            if(quarter3.contains(b.getSellDate())){
+                q3++;
+            }
+            if(quarter4.contains(b.getSellDate())){
+                q4++;
+            }
+        }
+
+        quarterlyNumbers.add(q1);
+        quarterlyNumbers.add(q2);
+        quarterlyNumbers.add(q3);
+        quarterlyNumbers.add(q4);
+
+        return quarterlyNumbers;
+    }
+
+    //Samme som ovenfor, bare med pris istedet for antal
 
 
 
