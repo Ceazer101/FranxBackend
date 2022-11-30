@@ -28,8 +28,8 @@ class ProductServiceTest {
     public static void initTestData(@Autowired ProductRepository product_repository){
         productRepository = product_repository;
         productRepository.deleteAll();
-        Product product = new Product(1234, "hjelm", "Til hovedet", "hjelmemanden", 5678, 'D', true, 250);
-        Product product1 = new Product(4321, "lygte", "til lys", "lygtemanden", 5678, 'Y', false, 550);
+        Product product = new Product(1234, "hjelm", "Til hovedet", "hjelmemanden", 'D', 3, 250);
+        Product product1 = new Product(4321, "lygte", "til lys", "lygtemanden", 'Y', 45, 550);
 
         productRepository.save(product);
         productRepository.save(product1);

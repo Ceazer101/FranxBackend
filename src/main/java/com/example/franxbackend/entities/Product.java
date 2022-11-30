@@ -16,14 +16,12 @@ import javax.persistence.Id;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int productNumber;
     private String productName;
     private String productDesc;
     private String distributor;
-    private int accountNumber;
     private char taxCode;
-    private boolean isArchived;
+    private int numberOfUnits;
     private double unitPrice;
 
 }

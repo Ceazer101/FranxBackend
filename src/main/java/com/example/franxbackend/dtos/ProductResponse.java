@@ -16,9 +16,9 @@ public class ProductResponse {
     private String productName;
     private String productDesc;
     private String distributor;
-    private int accountNumber;
     private char taxCode;
-    private boolean isArchived;
+
+    private int numberOfUnits;
     private double unitPrice;
 
     public ProductResponse(Product product) {
@@ -26,9 +26,8 @@ public class ProductResponse {
         this.productName = product.getProductName();
         this.productDesc = product.getProductDesc();
         this.distributor = product.getDistributor();
-        this.accountNumber = product.getAccountNumber();
         this.taxCode = product.getTaxCode();
-        this.isArchived = product.isArchived();
+        this.numberOfUnits = product.getNumberOfUnits();
         this.unitPrice = product.getUnitPrice();
     }
 

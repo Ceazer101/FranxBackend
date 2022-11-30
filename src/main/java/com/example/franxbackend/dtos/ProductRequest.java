@@ -14,9 +14,9 @@ public class ProductRequest {
     private String productName;
     private String productDesc;
     private String distributor;
-    private int accountNumber;
     private char taxCode;
-    private boolean isArchived;
+
+    private int numberOfUnits;
     private double unitPrice;
 
 
@@ -26,10 +26,9 @@ public class ProductRequest {
                 .productName(productRequest.productName)
                 .productDesc(productRequest.productDesc)
                 .distributor(productRequest.distributor)
-                .accountNumber(productRequest.accountNumber)
                 .taxCode(productRequest.taxCode)
-                .isArchived(productRequest.isArchived)
                 .unitPrice(productRequest.unitPrice)
+                .numberOfUnits(productRequest.numberOfUnits)
                 .build();
     }
 
@@ -38,9 +37,8 @@ public class ProductRequest {
         this.productName = product.getProductName();
         this.productDesc = product.getProductDesc();
         this.distributor = product.getDistributor();
-        this.accountNumber = product.getAccountNumber();
         this.taxCode = product.getTaxCode();
-        this.isArchived = product.isArchived();
+        this.numberOfUnits = product.getNumberOfUnits();
         this.unitPrice = product.getUnitPrice();
     }
 
