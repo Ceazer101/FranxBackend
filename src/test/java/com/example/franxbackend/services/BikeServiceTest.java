@@ -36,7 +36,6 @@ class BikeServiceTest {
 
         bikeRepository.save(bike1);
         bikeRepository.save(bike);
-
     }
 
     @BeforeEach
