@@ -51,7 +51,6 @@ public class BikeStatisticService {
 
     //Vil gerne have en liste med 4 integers, der hver især er antal cykler solgt i det givne kvartal
     public List<Integer> getNumberOfSoldBikesQuarterly(int year, List<BikeResponse> bikes){
-
         List<LocalDate> quarter1 = new ArrayList<>(LocalDate.of(year, Month.JANUARY, 1)
                 .datesUntil(LocalDate.of(year, Month.MARCH, 31)).toList());
         List<LocalDate> quarter2 = LocalDate.of(year, Month.APRIL, 1)
@@ -88,7 +87,40 @@ public class BikeStatisticService {
     }
 
     //Samme som ovenfor, bare med pris istedet for antal
+    public List<Double> getTotalPriceQuarterly(int year, List<BikeResponse> bikes){
+        List<LocalDate> quarter1 = new ArrayList<>(LocalDate.of(year, Month.JANUARY, 1)
+                .datesUntil(LocalDate.of(year, Month.MARCH, 31)).toList());
+        List<LocalDate> quarter2 = LocalDate.of(year, Month.APRIL, 1)
+                .datesUntil(LocalDate.of(year, Month.JUNE, 30)).toList();
+        List<LocalDate> quarter3 = LocalDate.of(year, Month.JULY, 1)
+                .datesUntil(LocalDate.of(year, Month.SEPTEMBER, 30)).toList();
+        List<LocalDate> quarter4 = LocalDate.of(year, Month.OCTOBER, 1)
+                .datesUntil(LocalDate.of(year, Month.DECEMBER, 31)).toList();
 
+        ArrayList<Double> quarterlyNumbers = new ArrayList<>();
+        double q1 = 0, q2 = 0, q3 = 0, q4 = 0;
 
+        for (BikeResponse b : bikes){
+            if(quarter1.contains(b.getSellDate())){
+                q1 += b.getPrice();
+            }
+            if(quarter2.contains(b.getSellDate())){
+                q2 += b.getPrice();
+            }
+            if(quarter3.contains(b.getSellDate())){
+                q3 += b.getPrice();
+            }
+            if(quarter4.contains(b.getSellDate())){
+                q4 += b.getPrice();
+            }
+        }
+
+        quarterlyNumbers.add(q1);
+        quarterlyNumbers.add(q2);
+        quarterlyNumbers.add(q3);
+        quarterlyNumbers.add(q4);
+
+        return quarterlyNumbers;
+    }
 
 }

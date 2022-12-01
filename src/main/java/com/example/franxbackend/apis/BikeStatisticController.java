@@ -27,8 +27,8 @@ public class BikeStatisticController {
         int numberOfBikesYearly = bikeStatisticService.getNumberOfSoldBikesYearly(year);
         double totalPriceYearly = bikeStatisticService.totalPriceYearly(year);
         List<Integer> numberOfBikesQuarterly = bikeStatisticService.getNumberOfSoldBikesQuarterly(year, soldBikesYearly);
-        List<Double> totalPriceQuarterly;
-        return new BikeStatisticResponse(soldBikesYearly, numberOfBikesYearly, totalPriceYearly, numberOfBikesQuarterly, null);
+        List<Double> totalPriceQuarterly = bikeStatisticService.getTotalPriceQuarterly(year, soldBikesYearly);
+        return new BikeStatisticResponse(soldBikesYearly, numberOfBikesYearly, totalPriceYearly, numberOfBikesQuarterly, totalPriceQuarterly);
     }
 
 
