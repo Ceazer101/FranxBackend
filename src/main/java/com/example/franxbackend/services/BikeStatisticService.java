@@ -1,7 +1,6 @@
 package com.example.franxbackend.services;
 
 import com.example.franxbackend.dtos.BikeResponse;
-import com.example.franxbackend.dtos.BikeStatisticResponse;
 import com.example.franxbackend.entities.Bike;
 import com.example.franxbackend.entities.Status;
 import com.example.franxbackend.repositories.BikeStatisticRepository;
@@ -49,7 +48,6 @@ public class BikeStatisticService {
     }
 
 
-    //Vil gerne have en liste med 4 integers, der hver især er antal cykler solgt i det givne kvartal
     public List<Integer> getNumberOfSoldBikesQuarterly(int year, List<BikeResponse> bikes){
         List<LocalDate> quarter1 = new ArrayList<>(LocalDate.of(year, Month.JANUARY, 1)
                 .datesUntil(LocalDate.of(year, Month.MARCH, 31)).toList());
@@ -60,7 +58,8 @@ public class BikeStatisticService {
         List<LocalDate> quarter4 = LocalDate.of(year, Month.OCTOBER, 1)
                 .datesUntil(LocalDate.of(year, Month.DECEMBER, 31)).toList();
 
-        ArrayList<Integer> quarterlyNumbers = new ArrayList<>();
+
+        List<Integer> quarters = new ArrayList<>();
         int q1 = 0, q2 = 0, q3 = 0, q4 = 0;
 
         for (BikeResponse b : bikes){
@@ -78,15 +77,15 @@ public class BikeStatisticService {
             }
         }
 
-        quarterlyNumbers.add(q1);
-        quarterlyNumbers.add(q2);
-        quarterlyNumbers.add(q3);
-        quarterlyNumbers.add(q4);
+        quarters.add(q1);
+        quarters.add(q2);
+        quarters.add(q3);
+        quarters.add(q4);
 
-        return quarterlyNumbers;
+        return quarters;
     }
 
-    //Samme som ovenfor, bare med pris istedet for antal
+
     public List<Double> getTotalPriceQuarterly(int year, List<BikeResponse> bikes){
         List<LocalDate> quarter1 = new ArrayList<>(LocalDate.of(year, Month.JANUARY, 1)
                 .datesUntil(LocalDate.of(year, Month.MARCH, 31)).toList());
@@ -97,7 +96,7 @@ public class BikeStatisticService {
         List<LocalDate> quarter4 = LocalDate.of(year, Month.OCTOBER, 1)
                 .datesUntil(LocalDate.of(year, Month.DECEMBER, 31)).toList();
 
-        ArrayList<Double> quarterlyNumbers = new ArrayList<>();
+        List<Double> quarters = new ArrayList<>();
         double q1 = 0, q2 = 0, q3 = 0, q4 = 0;
 
         for (BikeResponse b : bikes){
@@ -115,12 +114,12 @@ public class BikeStatisticService {
             }
         }
 
-        quarterlyNumbers.add(q1);
-        quarterlyNumbers.add(q2);
-        quarterlyNumbers.add(q3);
-        quarterlyNumbers.add(q4);
+        quarters.add(q1);
+        quarters.add(q2);
+        quarters.add(q3);
+        quarters.add(q4);
 
-        return quarterlyNumbers;
+        return quarters;
     }
 
 }

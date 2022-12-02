@@ -1,6 +1,5 @@
 package com.example.franxbackend.dtos;
 
-import com.example.franxbackend.services.BikeStatisticService;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +18,7 @@ public class BikeStatisticResponse {
     List<BikeResponse> bikesSold;
     int NumberOfSoldBikesYearly;
     double totalPriceYearly;
-    List<Integer> numberOfSoldBikesQuarterly;
+    List<Integer> quarterlyNumbers;
     List<Double> totalPriceQuarterly;
 
 
