@@ -72,4 +72,28 @@ class BikeStatisticServiceTest {
     }
 
 
+    @Test
+    void getNumberOfSoldBikesQuarterly() {
+        List<Bike> testList = bikeStatisticRepository.findBikesByStatus(Status.SOLD);
+        List<BikeResponse> responseList = testList.stream().map(bike ->
+                new BikeResponse(bike)).collect(Collectors.toList());
+
+        List<Integer> quarterList = bikeStatisticService.getNumberOfSoldBikesQuarterly(2022, responseList);
+
+
+        assertEquals(1, quarterList.get(3));
+
+    }
+
+    @Test
+    void getTotalPriceQuarterly() {
+        List<Bike> testList = bikeStatisticRepository.findBikesByStatus(Status.SOLD);
+        List<BikeResponse> responseList = testList.stream().map(bike ->
+                new BikeResponse(bike)).collect(Collectors.toList());
+
+        List<Double> quarterList = bikeStatisticService.getTotalPriceQuarterly(2022, responseList);
+
+
+        assertEquals(500, quarterList.get(3));
+    }
 }
