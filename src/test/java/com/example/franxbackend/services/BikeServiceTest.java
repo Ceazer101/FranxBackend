@@ -83,4 +83,10 @@ class BikeServiceTest {
         assertEquals(LocalDate.of(2011, Month.NOVEMBER, 11), bikeResponse.getSellDate());
         assertEquals(Status.DISASSEMBLE, bikeResponse.getStatus());
     }
+
+    @Test
+    void deleteBike() {
+        bikeRepository.removeBikeByFrameNumber("4053009");
+        assertEquals(1, bikeRepository.count());
+    }
 }

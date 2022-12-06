@@ -43,5 +43,10 @@ public class BikeController {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{frameNumber}")
+    public void deleteBike(@PathVariable String frameNumber){
+        bikeService.deleteBike(frameNumber);
+    }
+
 
 }
