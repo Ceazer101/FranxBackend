@@ -66,13 +66,13 @@ class BikeServiceTest {
         assertEquals(500, bikeResponse.getPrice());
         assertEquals(Status.SOLD, bikeResponse.getStatus());
     }
+
     @Test
     void getSingleBikeByNotExistingFrameNumber(){
         ResponseStatusException bikeResponse1 = Assertions
                 .assertThrows(ResponseStatusException.class,()-> bikeService.getSingleBike("I-do-not-Exist"));
         assertEquals(HttpStatus.NOT_FOUND, bikeResponse1.getStatus());
     }
-
 
     @Test
     void editBike() {

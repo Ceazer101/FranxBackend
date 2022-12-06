@@ -12,11 +12,14 @@ import com.example.franxbackend.entities.Product;
 
 import com.example.franxbackend.entities.Status;
 import com.example.franxbackend.repositories.ProductRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -60,5 +63,24 @@ class ProductServiceTest {
         ProductRequest productRequest = new ProductRequest(product);
         ProductResponse productResponse = productService.addProduct(productRequest);
         assertEquals(6789, productResponse.getProductNumber());
+    }
+
+    @Test
+    void getSingleProductByNotExistingProductNumber(){
+        ResponseStatusException productResponse = Assertions
+                .assertThrows(ResponseStatusException.class,()-> productService.getSingleProduct(0));
+        assertEquals(HttpStatus.NOT_FOUND, productResponse.getStatus());
+    }
+
+    @Test
+    void editProduct() {
+        ProductRequest productRequest = new ProductRequest
+                (new Product(1234, "hjelm", "Til knæet", "hjelmemanden", 'D', 3, 300));
+        productService.editProduct(productRequest, 1234);
+
+
+        ProductResponse productResponse = productService.getSingleProduct(1234);
+        assertEquals(300, productResponse.getUnitPrice());
+        assertEquals("Til knæet", productResponse.getProductDesc());
     }
 }
