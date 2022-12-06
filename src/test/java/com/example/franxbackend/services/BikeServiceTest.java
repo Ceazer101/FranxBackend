@@ -86,7 +86,7 @@ class BikeServiceTest {
 
     @Test
     void deleteBike() {
-        bikeRepository.removeBikeByFrameNumber("4053009");
+        bikeRepository.deleteById("4053009");
         assertEquals(1, bikeRepository.count());
     }
 }
