@@ -55,7 +55,7 @@ public class BikeService {
     }
 
     public void deleteBike(String frameNumber){
-        bikeRepository.removeBikeByFrameNumber(frameNumber);
+        bikeRepository.deleteById(frameNumber);
     }
 
 
