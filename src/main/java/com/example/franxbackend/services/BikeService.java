@@ -3,11 +3,13 @@ package com.example.franxbackend.services;
 import com.example.franxbackend.dtos.BikeRequest;
 import com.example.franxbackend.dtos.BikeResponse;
 import com.example.franxbackend.entities.Bike;
+import com.example.franxbackend.entities.Status;
 import com.example.franxbackend.repositories.BikeRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,6 +23,9 @@ public class BikeService {
     }
 
     public BikeResponse addBike(BikeRequest bikeRequest){
+        if(bikeRequest.getStatus() == Status.SOLD){
+            bikeRequest.setSellDate(LocalDate.now());
+        }
         Bike newBike = BikeRequest.getBikeEntity(bikeRequest);
         newBike = bikeRepository.save(newBike);
         return new BikeResponse(newBike);
@@ -43,8 +48,14 @@ public class BikeService {
     }
 
     public void editBike(BikeRequest body, String frameNumber){
+
+
         Bike bike = bikeRepository.findById(frameNumber).orElseThrow(()->
                 new ResponseStatusException(HttpStatus.NOT_FOUND,"Bike with this frame number does not exist"));
+
+        if(body.getStatus() == Status.SOLD){
+            body.setSellDate(LocalDate.now());
+        }
 
         bike.setBrand(body.getBrand());
         bike.setModel(body.getModel());
@@ -57,6 +68,7 @@ public class BikeService {
     public void deleteBike(String frameNumber){
         bikeRepository.deleteById(frameNumber);
     }
+
 
 
 
