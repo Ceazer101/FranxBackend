@@ -20,7 +20,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 @DataJpaTest
 class BikeServiceTest {
 
@@ -28,7 +27,7 @@ class BikeServiceTest {
     public static BikeRepository bikeRepository;
 
     @BeforeAll
-    public static void initTestData(@Autowired BikeRepository bike_repository){
+    public static void initTestData(@Autowired BikeRepository bike_repository) {
         bikeRepository = bike_repository;
         bikeRepository.deleteAll();
         Bike bike = new Bike("4053009", "bike", "something", 500, LocalDate.of(2010, Month.OCTOBER, 10), Status.SOLD);
@@ -39,7 +38,7 @@ class BikeServiceTest {
     }
 
     @BeforeEach
-    public void initBikeService(){
+    public void initBikeService() {
         bikeService = new BikeService(bikeRepository);
     }
 
@@ -52,7 +51,7 @@ class BikeServiceTest {
     }
 
     @Test
-    void getAllBikes(){
+    void getAllBikes() {
         List<BikeResponse> bikeList = bikeService.getAllBikes();
 
         assertEquals(2, bikeList.size());
@@ -68,9 +67,9 @@ class BikeServiceTest {
     }
 
     @Test
-    void getSingleBikeByNotExistingFrameNumber(){
+    void getSingleBikeByNotExistingFrameNumber() {
         ResponseStatusException bikeResponse1 = Assertions
-                .assertThrows(ResponseStatusException.class,()-> bikeService.getSingleBike("I-do-not-Exist"));
+                .assertThrows(ResponseStatusException.class, () -> bikeService.getSingleBike("I-do-not-Exist"));
         assertEquals(HttpStatus.NOT_FOUND, bikeResponse1.getStatus());
     }
 
@@ -89,4 +88,5 @@ class BikeServiceTest {
         bikeRepository.deleteById("4053009");
         assertEquals(1, bikeRepository.count());
     }
+
 }

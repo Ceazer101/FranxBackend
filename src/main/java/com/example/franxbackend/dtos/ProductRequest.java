@@ -20,7 +20,7 @@ public class ProductRequest {
     private double unitPrice;
 
 
-    public static Product getProductEntity(ProductRequest productRequest){
+    public static Product getProductEntity(ProductRequest productRequest) {
         return Product.builder()
                 .productNumber(productRequest.productNumber)
                 .productName(productRequest.productName)
@@ -41,7 +41,5 @@ public class ProductRequest {
         this.numberOfUnits = product.getNumberOfUnits();
         this.unitPrice = product.getUnitPrice();
     }
-
-
 
 }

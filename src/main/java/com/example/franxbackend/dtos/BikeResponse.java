@@ -32,4 +32,5 @@ public class BikeResponse {
         this.status = bike.getStatus();
         this.sellDate = bike.getSellDate();
     }
+
 }

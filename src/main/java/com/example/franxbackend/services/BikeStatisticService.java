@@ -6,7 +6,6 @@ import com.example.franxbackend.entities.Status;
 import com.example.franxbackend.repositories.BikeStatisticRepository;
 import org.springframework.stereotype.Service;
 
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ public class BikeStatisticService {
         this.bikeStatisticRepository = bikeStatisticRepository;
     }
 
-    public List<BikeResponse> getSoldBikesYearly(int year){
+    public List<BikeResponse> getSoldBikesYearly(int year) {
         List<Bike> bikesSoldGivenYear = bikeStatisticRepository
                 .findBikesByStatus(Status.SOLD);
         bikesSoldGivenYear.removeIf(bike -> year != bike.getSellDate().getYear());
@@ -33,22 +32,22 @@ public class BikeStatisticService {
         return response;
     }
 
-    public Integer getNumberOfSoldBikesYearly(int year){
+    public Integer getNumberOfSoldBikesYearly(int year) {
         return getSoldBikesYearly(year).size();
     }
 
-    public double totalPriceYearly(int year){
+    public double totalPriceYearly(int year) {
         List<BikeResponse> bikes = getSoldBikesYearly(year);
         double totalPrice = 0;
 
-        for (BikeResponse b: bikes) {
+        for (BikeResponse b : bikes) {
             totalPrice += b.getPrice();
         }
         return totalPrice;
     }
 
 
-    public List<Integer> getNumberOfSoldBikesQuarterly(int year, List<BikeResponse> bikes){
+    public List<Integer> getNumberOfSoldBikesQuarterly(int year, List<BikeResponse> bikes) {
         List<LocalDate> quarter1 = new ArrayList<>(LocalDate.of(year, Month.JANUARY, 1)
                 .datesUntil(LocalDate.of(year, Month.MARCH, 31)).toList());
         List<LocalDate> quarter2 = LocalDate.of(year, Month.APRIL, 1)
@@ -62,17 +61,17 @@ public class BikeStatisticService {
         List<Integer> quarters = new ArrayList<>();
         int q1 = 0, q2 = 0, q3 = 0, q4 = 0;
 
-        for (BikeResponse b : bikes){
-           if(quarter1.contains(b.getSellDate())){
+        for (BikeResponse b : bikes) {
+            if (quarter1.contains(b.getSellDate())) {
                 q1++;
             }
-            if(quarter2.contains(b.getSellDate())){
+            if (quarter2.contains(b.getSellDate())) {
                 q2++;
             }
-            if(quarter3.contains(b.getSellDate())){
+            if (quarter3.contains(b.getSellDate())) {
                 q3++;
             }
-            if(quarter4.contains(b.getSellDate())){
+            if (quarter4.contains(b.getSellDate())) {
                 q4++;
             }
         }
@@ -86,7 +85,7 @@ public class BikeStatisticService {
     }
 
 
-    public List<Double> getTotalPriceQuarterly(int year, List<BikeResponse> bikes){
+    public List<Double> getTotalPriceQuarterly(int year, List<BikeResponse> bikes) {
         List<LocalDate> quarter1 = new ArrayList<>(LocalDate.of(year, Month.JANUARY, 1)
                 .datesUntil(LocalDate.of(year, Month.MARCH, 31)).toList());
         List<LocalDate> quarter2 = LocalDate.of(year, Month.APRIL, 1)
@@ -99,17 +98,17 @@ public class BikeStatisticService {
         List<Double> quarters = new ArrayList<>();
         double q1 = 0, q2 = 0, q3 = 0, q4 = 0;
 
-        for (BikeResponse b : bikes){
-            if(quarter1.contains(b.getSellDate())){
+        for (BikeResponse b : bikes) {
+            if (quarter1.contains(b.getSellDate())) {
                 q1 += b.getPrice();
             }
-            if(quarter2.contains(b.getSellDate())){
+            if (quarter2.contains(b.getSellDate())) {
                 q2 += b.getPrice();
             }
-            if(quarter3.contains(b.getSellDate())){
+            if (quarter3.contains(b.getSellDate())) {
                 q3 += b.getPrice();
             }
-            if(quarter4.contains(b.getSellDate())){
+            if (quarter4.contains(b.getSellDate())) {
                 q4 += b.getPrice();
             }
         }

@@ -1,7 +1,6 @@
 package com.example.franxbackend.services;
 
 import com.example.franxbackend.dtos.BikeResponse;
-import com.example.franxbackend.dtos.BikeStatisticResponse;
 import com.example.franxbackend.entities.Bike;
 import com.example.franxbackend.entities.Status;
 import com.example.franxbackend.repositories.BikeStatisticRepository;
@@ -13,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +24,7 @@ class BikeStatisticServiceTest {
     public static BikeStatisticRepository bikeStatisticRepository;
 
     @BeforeAll
-    public static void setup(@Autowired BikeStatisticRepository bsr){
+    public static void setup(@Autowired BikeStatisticRepository bsr) {
         bikeStatisticRepository = bsr;
 
         bikeStatisticRepository.deleteAll();
@@ -38,7 +36,7 @@ class BikeStatisticServiceTest {
     }
 
     @BeforeEach
-    public void setBikeStatisticService(){
+    public void setBikeStatisticService() {
         bikeStatisticService = new BikeStatisticService(bikeStatisticRepository);
     }
 
@@ -65,7 +63,7 @@ class BikeStatisticServiceTest {
     void totalPriceYearly() {
         List<BikeResponse> soldBikes = bikeStatisticService.getSoldBikesYearly(2022);
         int totalPrice = 0;
-        for (BikeResponse b : soldBikes){
+        for (BikeResponse b : soldBikes) {
             totalPrice += b.getPrice();
         }
         assertEquals(500, totalPrice);
@@ -96,4 +94,5 @@ class BikeStatisticServiceTest {
 
         assertEquals(500, quarterList.get(3));
     }
+
 }

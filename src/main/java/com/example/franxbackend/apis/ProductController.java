@@ -1,6 +1,5 @@
 package com.example.franxbackend.apis;
 
-import com.example.franxbackend.dtos.BikeResponse;
 import com.example.franxbackend.dtos.ProductRequest;
 import com.example.franxbackend.dtos.ProductResponse;
 import com.example.franxbackend.services.ProductService;
@@ -22,24 +21,24 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductResponse> getAllBikes(){
+    public List<ProductResponse> getAllBikes() {
         List<ProductResponse> response = productService.getAllProducts();
         return response;
     }
 
     @PostMapping
-    public ProductResponse addProduct(@RequestBody ProductRequest body){
+    public ProductResponse addProduct(@RequestBody ProductRequest body) {
         return productService.addProduct(body);
     }
 
     @GetMapping("/{productNumber}")
-    public ProductResponse getSignleProduct(@PathVariable Integer productNumber){
+    public ProductResponse getSignleProduct(@PathVariable Integer productNumber) {
         ProductResponse productResponse = productService.getSingleProduct(productNumber);
         return productResponse;
     }
 
     @PutMapping("/{productNumber}")
-    public ResponseEntity<Boolean> editProduct(@RequestBody ProductRequest body, @PathVariable Integer productNumber){
+    public ResponseEntity<Boolean> editProduct(@RequestBody ProductRequest body, @PathVariable Integer productNumber) {
         productService.editProduct(body, productNumber);
         return new ResponseEntity<>(true, HttpStatus.OK);
     }

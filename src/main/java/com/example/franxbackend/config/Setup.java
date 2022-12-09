@@ -45,4 +45,5 @@ public class Setup implements ApplicationRunner {
         productRepository.save(product);
         productRepository.save(product1);
     }
+
 }

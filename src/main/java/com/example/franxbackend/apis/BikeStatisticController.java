@@ -4,6 +4,7 @@ import com.example.franxbackend.dtos.BikeResponse;
 import com.example.franxbackend.dtos.BikeStatisticResponse;
 import com.example.franxbackend.services.BikeStatisticService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -18,7 +19,7 @@ public class BikeStatisticController {
     }
 
     @GetMapping("/{year}")
-    public BikeStatisticResponse getSoldBikes(@PathVariable int year){
+    public BikeStatisticResponse getSoldBikes(@PathVariable int year) {
         List<BikeResponse> soldBikesYearly = bikeStatisticService.getSoldBikesYearly(year);
         int numberOfBikesYearly = bikeStatisticService.getNumberOfSoldBikesYearly(year);
         double totalPriceYearly = bikeStatisticService.totalPriceYearly(year);
@@ -26,10 +27,5 @@ public class BikeStatisticController {
         List<Double> totalPriceQuarterly = bikeStatisticService.getTotalPriceQuarterly(year, soldBikesYearly);
         return new BikeStatisticResponse(soldBikesYearly, numberOfBikesYearly, totalPriceYearly, numberOfBikesQuarterly, totalPriceQuarterly);
     }
-
-
-
-
-
 
 }

@@ -18,12 +18,12 @@ public class BikeService {
 
     BikeRepository bikeRepository;
 
-    public  BikeService(BikeRepository bikeRepository){
+    public BikeService(BikeRepository bikeRepository) {
         this.bikeRepository = bikeRepository;
     }
 
-    public BikeResponse addBike(BikeRequest bikeRequest){
-        if(bikeRequest.getStatus() == Status.SOLD){
+    public BikeResponse addBike(BikeRequest bikeRequest) {
+        if (bikeRequest.getStatus() == Status.SOLD) {
             bikeRequest.setSellDate(LocalDate.now());
         }
         Bike newBike = BikeRequest.getBikeEntity(bikeRequest);
@@ -32,7 +32,7 @@ public class BikeService {
     }
 
 
-    public List<BikeResponse> getAllBikes(){
+    public List<BikeResponse> getAllBikes() {
         List<Bike> bikes = bikeRepository.findAll();
         List<BikeResponse> response = bikes.stream().map(bike ->
                 new BikeResponse(bike)).collect(Collectors.toList());
@@ -40,20 +40,20 @@ public class BikeService {
         return response;
     }
 
-    public BikeResponse getSingleBike(String frameNumber){
-         Bike bike = bikeRepository.findById(frameNumber).orElseThrow(()->
-                 new ResponseStatusException(HttpStatus.NOT_FOUND,"Bike with this frame number does not exist"));
-         BikeResponse bikeResponse = new BikeResponse(bike);
-         return bikeResponse;
+    public BikeResponse getSingleBike(String frameNumber) {
+        Bike bike = bikeRepository.findById(frameNumber).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Bike with this frame number does not exist"));
+        BikeResponse bikeResponse = new BikeResponse(bike);
+        return bikeResponse;
     }
 
-    public void editBike(BikeRequest body, String frameNumber){
+    public void editBike(BikeRequest body, String frameNumber) {
 
 
-        Bike bike = bikeRepository.findById(frameNumber).orElseThrow(()->
-                new ResponseStatusException(HttpStatus.NOT_FOUND,"Bike with this frame number does not exist"));
+        Bike bike = bikeRepository.findById(frameNumber).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Bike with this frame number does not exist"));
 
-        if(body.getStatus() == Status.SOLD){
+        if (body.getStatus() == Status.SOLD) {
             body.setSellDate(LocalDate.now());
         }
 
@@ -65,12 +65,8 @@ public class BikeService {
         bikeRepository.save(bike);
     }
 
-    public void deleteBike(String frameNumber){
+    public void deleteBike(String frameNumber) {
         bikeRepository.deleteById(frameNumber);
     }
-
-
-
-
 
 }

@@ -21,5 +21,4 @@ public class BikeStatisticResponse {
     List<Integer> quarterlyNumbers;
     List<Double> totalPriceQuarterly;
 
-
 }

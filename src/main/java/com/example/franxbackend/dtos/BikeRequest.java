@@ -19,7 +19,7 @@ public class BikeRequest {
     private Status status;
 
 
-    public static Bike getBikeEntity(BikeRequest bikeRequest){
+    public static Bike getBikeEntity(BikeRequest bikeRequest) {
         return Bike.builder()
                 .frameNumber(bikeRequest.frameNumber)
                 .brand(bikeRequest.brand)
@@ -28,7 +28,6 @@ public class BikeRequest {
                 .sellDate(bikeRequest.sellDate)
                 .status(bikeRequest.status)
                 .build();
-
     }
 
     public BikeRequest(Bike bike) {

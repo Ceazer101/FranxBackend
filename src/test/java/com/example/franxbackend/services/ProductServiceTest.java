@@ -1,16 +1,9 @@
 package com.example.franxbackend.services;
 
-
-import com.example.franxbackend.dtos.BikeRequest;
-import com.example.franxbackend.dtos.BikeResponse;
 import com.example.franxbackend.dtos.ProductRequest;
 import com.example.franxbackend.dtos.ProductResponse;
-
-import com.example.franxbackend.entities.Bike;
 import com.example.franxbackend.entities.Product;
 
-
-import com.example.franxbackend.entities.Status;
 import com.example.franxbackend.repositories.ProductRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -21,8 +14,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,7 +26,7 @@ class ProductServiceTest {
 
 
     @BeforeAll
-    public static void initTestData(@Autowired ProductRepository product_repository){
+    public static void initTestData(@Autowired ProductRepository product_repository) {
         productRepository = product_repository;
         productRepository.deleteAll();
         Product product = new Product(1234, "hjelm", "Til hovedet", "hjelmemanden", 'D', 3, 250);
@@ -46,7 +37,7 @@ class ProductServiceTest {
     }
 
     @BeforeEach
-    public void initBikeService(){
+    public void initBikeService() {
         productService = new ProductService(productRepository);
     }
 
@@ -66,9 +57,9 @@ class ProductServiceTest {
     }
 
     @Test
-    void getSingleProductByNotExistingProductNumber(){
+    void getSingleProductByNotExistingProductNumber() {
         ResponseStatusException productResponse = Assertions
-                .assertThrows(ResponseStatusException.class,()-> productService.getSingleProduct(0));
+                .assertThrows(ResponseStatusException.class, () -> productService.getSingleProduct(0));
         assertEquals(HttpStatus.NOT_FOUND, productResponse.getStatus());
     }
 
@@ -83,4 +74,5 @@ class ProductServiceTest {
         assertEquals(300, productResponse.getUnitPrice());
         assertEquals("Til knæet", productResponse.getProductDesc());
     }
+
 }
